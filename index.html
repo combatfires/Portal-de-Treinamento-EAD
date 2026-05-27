@@ -538,9 +538,182 @@
     .num-compressoes { font-size: 3.5rem; }
     .pg-titulo h2 { font-size: 1.8rem; }
   }
+
+  /* ===== TELA DE LOGIN ===== */
+  #telaLogin {
+    position: fixed; inset: 0; z-index: 9999;
+    background: linear-gradient(135deg, var(--cinza-escuro) 0%, #1a252f 100%);
+    display: flex; align-items: center; justify-content: center;
+    padding: 1.5rem;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+  }
+  #telaLogin.oculto {
+    opacity: 0; visibility: hidden; pointer-events: none;
+  }
+  .login-card {
+    background: var(--branco); border-radius: 24px;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.45);
+    padding: 2.8rem 2.5rem; width: 100%; max-width: 420px;
+    position: relative; overflow: hidden;
+  }
+  .login-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 5px;
+    background: linear-gradient(90deg, var(--vermelho), var(--laranja), var(--vermelho));
+    background-size: 200% 100%;
+    animation: shimmer 2.5s linear infinite;
+  }
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+  .login-logo {
+    display: flex; align-items: center; gap: 12px;
+    justify-content: center; margin-bottom: 2rem;
+  }
+  .login-logo-icon {
+    width: 52px; height: 52px; border-radius: 14px;
+    background: var(--vermelho);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.6rem; box-shadow: 0 6px 18px rgba(192,57,43,0.4);
+  }
+  .login-logo-text { text-align: left; }
+  .login-logo-text strong { display: block; font-size: 1.05rem; font-weight: 800; color: var(--cinza-escuro); }
+  .login-logo-text span { font-size: 0.75rem; color: var(--cinza-medio); }
+  .login-titulo {
+    text-align: center; margin-bottom: 0.4rem;
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.6rem; color: var(--cinza-escuro);
+  }
+  .login-subtitulo {
+    text-align: center; font-size: 0.83rem;
+    color: var(--cinza-medio); margin-bottom: 1.8rem; line-height: 1.6;
+  }
+  .login-grupo { margin-bottom: 1.1rem; }
+  .login-grupo label {
+    display: block; font-size: 0.78rem; font-weight: 700;
+    color: var(--cinza-escuro); margin-bottom: 6px;
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .login-input-wrapper { position: relative; }
+  .login-input-wrapper .input-icon {
+    position: absolute; left: 14px; top: 50%; transform: translateY(-50%);
+    font-size: 1rem; color: var(--cinza-medio); pointer-events: none;
+  }
+  .login-input {
+    width: 100%; padding: 12px 14px 12px 42px;
+    border: 2px solid #E8EAED; border-radius: 10px;
+    font-family: 'Sora', sans-serif; font-size: 0.9rem;
+    color: var(--cinza-escuro); background: var(--cinza-claro);
+    transition: border-color 0.2s, background 0.2s;
+    outline: none;
+  }
+  .login-input:focus { border-color: var(--vermelho); background: #fff; }
+  .login-input.erro { border-color: var(--vermelho); background: #FFF5F5; }
+  .login-erro-msg {
+    display: none; font-size: 0.78rem; color: var(--vermelho-escuro);
+    margin-top: 5px; padding: 6px 10px;
+    background: var(--vermelho-claro); border-radius: 6px;
+  }
+  .login-erro-msg.visivel { display: block; animation: fadeSlide 0.3s ease; }
+  .btn-login {
+    width: 100%; padding: 14px;
+    background: var(--vermelho); color: #fff;
+    border: none; border-radius: 12px;
+    font-family: 'Sora', sans-serif; font-size: 0.97rem;
+    font-weight: 700; cursor: pointer; margin-top: 0.5rem;
+    transition: background 0.2s, transform 0.1s, box-shadow 0.2s;
+    box-shadow: 0 4px 16px rgba(192,57,43,0.35);
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+  }
+  .btn-login:hover { background: var(--vermelho-escuro); box-shadow: 0 6px 20px rgba(192,57,43,0.45); }
+  .btn-login:active { transform: scale(0.98); }
+  .btn-login:disabled { background: #ccc; box-shadow: none; cursor: not-allowed; }
+  .login-rodape {
+    text-align: center; margin-top: 1.5rem;
+    font-size: 0.75rem; color: var(--cinza-medio);
+    display: flex; align-items: center; justify-content: center; gap: 6px;
+  }
+  .login-rodape span { font-size: 0.9rem; }
+  /* Shake animation para erro */
+  @keyframes loginShake {
+    0%,100% { transform: translateX(0); }
+    20% { transform: translateX(-8px); }
+    40% { transform: translateX(8px); }
+    60% { transform: translateX(-5px); }
+    80% { transform: translateX(5px); }
+  }
+  .login-card.shake { animation: loginShake 0.4s ease; }
+  /* Avatar do usuário logado na nav */
+  .nav-usuario {
+    display: flex; align-items: center; gap: 8px;
+    color: rgba(255,255,255,0.85); font-size: 0.78rem;
+    background: rgba(255,255,255,0.08); border-radius: 20px;
+    padding: 5px 12px 5px 6px; cursor: default;
+  }
+  .nav-avatar {
+    width: 26px; height: 26px; border-radius: 50%;
+    background: var(--vermelho); color: #fff;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.75rem; font-weight: 700; flex-shrink: 0;
+  }
+  .btn-sair {
+    background: rgba(192,57,43,0.25); color: #FF8A70;
+    border: 1px solid rgba(192,57,43,0.4);
+    padding: 5px 10px; border-radius: 7px; cursor: pointer;
+    font-family: 'Sora', sans-serif; font-size: 0.73rem; font-weight: 600;
+    transition: background 0.2s; margin-left: 4px;
+  }
+  .btn-sair:hover { background: rgba(192,57,43,0.4); }
+  @media (max-width: 600px) {
+    .login-card { padding: 2rem 1.5rem; }
+    .login-titulo { font-size: 1.35rem; }
+  }
 </style>
 </head>
 <body>
+
+<!-- ===== TELA DE LOGIN ===== -->
+<div id="telaLogin">
+  <div class="login-card" id="loginCard">
+    <div class="login-logo">
+      <div class="login-logo-icon">🔥</div>
+      <div class="login-logo-text">
+        <strong>Combat Fire</strong>
+        <span>Portal de Treinamento</span>
+      </div>
+    </div>
+    <h2 class="login-titulo">Acesso ao Portal</h2>
+    <p class="login-subtitulo">Insira suas credenciais para acessar o material de treinamento e avaliação.</p>
+
+    <div class="login-grupo">
+      <label for="loginUsuario">Usuário / Matrícula</label>
+      <div class="login-input-wrapper">
+        <span class="input-icon">👤</span>
+        <input type="text" id="loginUsuario" class="login-input" placeholder="Seu usuário ou matrícula" autocomplete="username" />
+      </div>
+    </div>
+
+    <div class="login-grupo">
+      <label for="loginSenha">Senha</label>
+      <div class="login-input-wrapper">
+        <span class="input-icon">🔒</span>
+        <input type="password" id="loginSenha" class="login-input" placeholder="Sua senha" autocomplete="current-password" />
+      </div>
+    </div>
+
+    <div class="login-erro-msg" id="loginErroMsg">❌ Usuário ou senha incorretos. Tente novamente.</div>
+
+    <button class="btn-login" id="btnEntrar" onclick="fazerLogin()">
+      <span>🔓</span> Entrar no Portal
+    </button>
+
+    <div class="login-rodape">
+      <span>🔐</span>
+      Acesso restrito a alunos matriculados
+    </div>
+  </div>
+</div>
 
 <!-- NAV TOPO -->
 <nav class="nav-topo">
@@ -554,7 +727,14 @@
     </div>
     <span id="textoProgresso">1 / 10</span>
   </div>
-  <button class="nav-btn" onclick="toggleSidebar()">☰ Índice</button>
+  <div style="display:flex;align-items:center;gap:8px">
+    <div class="nav-usuario" id="navUsuario">
+      <div class="nav-avatar" id="navAvatar">?</div>
+      <span id="navNomeUsuario">Aluno</span>
+    </div>
+    <button class="btn-sair" onclick="fazerLogout()" title="Sair do portal">⏻ Sair</button>
+    <button class="nav-btn" onclick="toggleSidebar()">☰ Índice</button>
+  </div>
 </nav>
 
 <!-- OVERLAY -->
@@ -1863,6 +2043,7 @@
           <h4>📋 Preencha seus dados para enviar o resultado</h4>
           <div class="form-grupo"><label>Nome Completo</label><input type="text" id="nomeAluno" placeholder="Digite seu nome completo"></div>
           <div class="form-grupo"><label>CPF</label><input type="text" id="cpfAluno" placeholder="000.000.000-00" maxlength="14" oninput="mascaraCPF(this)"></div>
+          <div class="form-grupo"><label>Empresa</label><input type="text" id="empresaAluno" placeholder="Nome da empresa onde trabalha"></div>
         </div>
         <button class="btn-whatsapp" onclick="enviarWhatsApp()">
           <span style="font-size:1.2rem">💬</span>
@@ -2426,10 +2607,12 @@ function mascaraCPF(input) {
 }
 
 function enviarWhatsApp() {
-  const nome = document.getElementById('nomeAluno').value.trim();
-  const cpf  = document.getElementById('cpfAluno').value.trim();
+  const nome    = document.getElementById('nomeAluno').value.trim();
+  const cpf     = document.getElementById('cpfAluno').value.trim();
+  const empresa = document.getElementById('empresaAluno').value.trim();
   if (!nome) { alert('Por favor, insira seu nome completo.'); return; }
   if (cpf.length < 14) { alert('Por favor, insira um CPF válido.'); return; }
+  if (!empresa) { alert('Por favor, insira o nome da sua empresa.'); return; }
   const pontos = quizRespostas.filter((r, i) => r === questoesEmbaralhadas[i].r).length;
   const pct = Math.round((pontos / questoes.length) * 100);
   const data = new Date().toLocaleDateString('pt-BR');
@@ -2439,10 +2622,88 @@ function enviarWhatsApp() {
     const resp = quizRespostas[i] !== null ? q.ops[quizRespostas[i]] : 'Não respondida';
     return `${acertou} Q${i+1}: ${resp}`;
   }).join('\n');
-  const msg = `📋 *RESULTADO DO QUIZ — SEGURANÇA CONTRA INCÊNDIO*\n\n👤 *Aluno:* ${nome}\n🪪 *CPF:* ${cpf}\n📅 *Data:* ${data} às ${hora}\n\n🎯 *PONTUAÇÃO: ${pontos}/${questoes.length} (${pct}%)*\n\n📊 *Detalhamento:*\n${detalhes}\n\n_Apostila Interativa — Combate a Incêndio & Primeiros Socorros_`;
+  const msg = `📋 *RESULTADO DO QUIZ — SEGURANÇA CONTRA INCÊNDIO*\n\n👤 *Aluno:* ${nome}\n🪪 *CPF:* ${cpf}\n🏢 *Empresa:* ${empresa}\n📅 *Data:* ${data} às ${hora}\n\n🎯 *PONTUAÇÃO: ${pontos}/${questoes.length} (${pct}%)*\n\n📊 *Detalhamento:*\n${detalhes}\n\n_Apostila Interativa — Combate a Incêndio & Primeiros Socorros_`;
   const numero = '5585984747435';
   window.open('https://wa.me/' + numero + '?text=' + encodeURIComponent(msg), '_blank');
 }
+
+// ===== LOGIN =====
+// Cadastro de usuários: { usuario: senha }
+// Para adicionar alunos, inclua novas entradas neste objeto.
+const usuariosCadastrados = {
+  'aluno':   'combatfire',
+  'professor':   'profs@123',
+  'instrutor': 'admin@123',
+  'demo':      '1234'
+};
+
+function fazerLogin() {
+  const usuario = document.getElementById('loginUsuario').value.trim().toLowerCase();
+  const senha   = document.getElementById('loginSenha').value;
+  const erroMsg = document.getElementById('loginErroMsg');
+  const card    = document.getElementById('loginCard');
+  const btn     = document.getElementById('btnEntrar');
+
+  erroMsg.classList.remove('visivel');
+  document.getElementById('loginUsuario').classList.remove('erro');
+  document.getElementById('loginSenha').classList.remove('erro');
+
+  if (!usuario || !senha) {
+    erroMsg.textContent = '⚠️ Preencha o usuário e a senha para continuar.';
+    erroMsg.classList.add('visivel');
+    card.classList.remove('shake');
+    void card.offsetWidth;
+    card.classList.add('shake');
+    return;
+  }
+
+  btn.disabled = true;
+  btn.innerHTML = '<span>⏳</span> Verificando...';
+
+  setTimeout(() => {
+    if (usuariosCadastrados[usuario] && usuariosCadastrados[usuario] === senha) {
+      // Sucesso
+      const nome = usuario.charAt(0).toUpperCase() + usuario.slice(1);
+      document.getElementById('navNomeUsuario').textContent = nome;
+      document.getElementById('navAvatar').textContent = nome.charAt(0).toUpperCase();
+      sessionStorage.setItem('cfUsuario', nome);
+
+      document.getElementById('telaLogin').classList.add('oculto');
+      btn.disabled = false;
+      btn.innerHTML = '<span>🔓</span> Entrar no Portal';
+    } else {
+      // Falha
+      erroMsg.textContent = '❌ Usuário ou senha incorretos. Tente novamente.';
+      erroMsg.classList.add('visivel');
+      document.getElementById('loginUsuario').classList.add('erro');
+      document.getElementById('loginSenha').classList.add('erro');
+      document.getElementById('loginSenha').value = '';
+      card.classList.remove('shake');
+      void card.offsetWidth;
+      card.classList.add('shake');
+      btn.disabled = false;
+      btn.innerHTML = '<span>🔓</span> Entrar no Portal';
+    }
+  }, 700);
+}
+
+function fazerLogout() {
+  sessionStorage.removeItem('cfUsuario');
+  document.getElementById('loginUsuario').value = '';
+  document.getElementById('loginSenha').value = '';
+  document.getElementById('loginErroMsg').classList.remove('visivel');
+  document.getElementById('loginUsuario').classList.remove('erro');
+  document.getElementById('loginSenha').classList.remove('erro');
+  document.getElementById('telaLogin').classList.remove('oculto');
+}
+
+// Permitir login com Enter
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    const tela = document.getElementById('telaLogin');
+    if (!tela.classList.contains('oculto')) fazerLogin();
+  }
+});
 
 // ===== INICIALIZAÇÃO =====
 document.addEventListener('DOMContentLoaded', function() {
@@ -2450,6 +2711,14 @@ document.addEventListener('DOMContentLoaded', function() {
   criarGlossario();
   initRCPDots();
   irParaPagina(1);
+
+  // Verificar sessão ativa
+  const sessao = sessionStorage.getItem('cfUsuario');
+  if (sessao) {
+    document.getElementById('navNomeUsuario').textContent = sessao;
+    document.getElementById('navAvatar').textContent = sessao.charAt(0).toUpperCase();
+    document.getElementById('telaLogin').classList.add('oculto');
+  }
 });
 </script>
 </body>

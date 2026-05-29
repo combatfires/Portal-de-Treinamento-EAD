@@ -539,6 +539,33 @@
     .pg-titulo h2 { font-size: 1.8rem; }
   }
 
+  /* ===== AVISO SENHA TEMPORÁRIA ===== */
+  .aviso-senha-temp {
+    background: linear-gradient(135deg, #FFF3CD, #FDEBD0);
+    border: 2px solid var(--laranja);
+    border-radius: 12px;
+    padding: 0.9rem 1.2rem;
+    margin-bottom: 1.4rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 0.82rem;
+    color: #7D4A00;
+    animation: fadeSlide 0.4s ease;
+  }
+  .aviso-senha-temp .aviso-icone { font-size: 1.3rem; flex-shrink: 0; margin-top: 1px; }
+  .aviso-senha-temp .aviso-texto strong { display: block; font-size: 0.86rem; margin-bottom: 2px; color: #5D3500; }
+  .aviso-senha-temp .aviso-tempo {
+    display: inline-block;
+    background: var(--laranja);
+    color: #fff;
+    border-radius: 6px;
+    padding: 1px 8px;
+    font-weight: 700;
+    font-size: 0.78rem;
+    margin-top: 4px;
+  }
+
   /* ===== TELA DE LOGIN ===== */
   #telaLogin {
     position: fixed; inset: 0; z-index: 9999;
@@ -669,6 +696,149 @@
     .login-card { padding: 2rem 1.5rem; }
     .login-titulo { font-size: 1.35rem; }
   }
+
+  /* ===== PAINEL ADMIN ===== */
+  .modal-admin-overlay {
+    display: none; position: fixed; inset: 0; z-index: 10000;
+    background: rgba(0,0,0,0.65); backdrop-filter: blur(4px);
+    align-items: center; justify-content: center; padding: 1rem;
+  }
+  .modal-admin-overlay.visivel { display: flex; animation: fadeSlide 0.3s ease; }
+  .modal-admin-box {
+    background: #1E2A35; border-radius: 20px; width: 100%; max-width: 860px;
+    max-height: 90vh; display: flex; flex-direction: column;
+    box-shadow: 0 32px 80px rgba(0,0,0,0.55);
+    overflow: hidden;
+  }
+  .modal-admin-header {
+    background: linear-gradient(135deg, #C0392B, #922B21);
+    padding: 1.2rem 1.5rem; display: flex; align-items: center;
+    justify-content: space-between; flex-shrink: 0;
+  }
+  .modal-admin-titulo { display: flex; align-items: center; gap: 12px; }
+  .modal-admin-fechar {
+    background: rgba(255,255,255,0.15); border: none; color: #fff;
+    width: 32px; height: 32px; border-radius: 8px; cursor: pointer;
+    font-size: 1rem; display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+  }
+  .modal-admin-fechar:hover { background: rgba(255,255,255,0.3); }
+  .modal-admin-body { padding: 1.5rem; overflow-y: auto; flex: 1; }
+
+  .admin-stats-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 1.2rem; }
+  .admin-stat-card {
+    background: rgba(255,255,255,0.06); border-radius: 12px;
+    padding: 1rem; text-align: center; border: 1px solid rgba(255,255,255,0.08);
+  }
+  .admin-stat-card.verde { border-color: rgba(26,188,156,0.4); }
+  .admin-stat-card.vermelho { border-color: rgba(192,57,43,0.4); }
+  .admin-stat-card strong { display: block; font-size: 2rem; font-weight: 800; color: #fff; line-height: 1; }
+  .admin-stat-card.verde strong { color: #1ABC9C; }
+  .admin-stat-card.vermelho strong { color: #E74C3C; }
+  .admin-stat-card span { font-size: 0.72rem; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .admin-add-row {
+    background: rgba(255,255,255,0.05); border-radius: 12px;
+    padding: 1rem 1.2rem; margin-bottom: 1.2rem;
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .admin-add-titulo { font-size: 0.82rem; font-weight: 700; color: rgba(255,255,255,0.7); margin-bottom: 0.6rem; }
+  .admin-add-form { display: flex; gap: 8px; }
+  .admin-input {
+    flex: 1; padding: 9px 14px; border-radius: 8px;
+    border: 1.5px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.08); color: #fff;
+    font-family: 'Sora', sans-serif; font-size: 0.86rem; outline: none;
+  }
+  .admin-input:focus { border-color: var(--vermelho); }
+  .admin-input::placeholder { color: rgba(255,255,255,0.3); }
+
+  .admin-tabela-wrap { overflow-x: auto; border-radius: 12px; border: 1px solid rgba(255,255,255,0.08); }
+  .admin-tabela { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+  .admin-tabela thead { background: rgba(255,255,255,0.06); }
+  .admin-tabela th {
+    padding: 0.7rem 1rem; text-align: left;
+    color: rgba(255,255,255,0.5); font-size: 0.72rem;
+    text-transform: uppercase; letter-spacing: 0.5px; font-weight: 700;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .admin-tabela td {
+    padding: 0.75rem 1rem; color: rgba(255,255,255,0.85);
+    border-bottom: 1px solid rgba(255,255,255,0.05); vertical-align: middle;
+  }
+  .admin-tabela tr:last-child td { border-bottom: none; }
+  .admin-tabela tr:hover td { background: rgba(255,255,255,0.03); }
+
+  .admin-user-badge {
+    background: rgba(255,255,255,0.1); border-radius: 6px;
+    padding: 3px 10px; font-weight: 700; font-size: 0.82rem; color: #fff;
+    font-family: monospace; letter-spacing: 0.5px;
+  }
+  .admin-senha-vis {
+    font-family: monospace; font-size: 0.85rem;
+    color: #fff; letter-spacing: 1px;
+    background: rgba(255,255,255,0.08);
+    padding: 2px 8px; border-radius: 6px;
+    display: inline-block;
+  }
+  .admin-btn-copy {
+    background: none; border: none; cursor: pointer; padding: 2px 5px;
+    font-size: 0.9rem; opacity: 0.6; transition: opacity 0.2s; vertical-align: middle;
+  }
+  .admin-btn-copy:hover { opacity: 1; }
+
+  .admin-badge {
+    display: inline-block; border-radius: 6px; padding: 2px 10px;
+    font-size: 0.74rem; font-weight: 700;
+  }
+  .admin-badge.verde { background: rgba(26,188,156,0.2); color: #1ABC9C; }
+  .admin-badge.vermelho { background: rgba(231,76,60,0.2); color: #E74C3C; }
+  .admin-badge.cinza { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.5); }
+
+  .admin-tempo { font-weight: 600; color: #1ABC9C; font-size: 0.8rem; }
+  .admin-tempo.expirado { color: #E74C3C; }
+  .admin-data { font-size: 0.76rem; color: rgba(255,255,255,0.4); }
+
+  .admin-btn {
+    border: none; border-radius: 7px; padding: 5px 11px;
+    font-family: 'Sora', sans-serif; font-size: 0.75rem; font-weight: 700;
+    cursor: pointer; transition: all 0.2s; margin-right: 4px;
+  }
+  .admin-btn-reset { background: rgba(41,128,185,0.25); color: #5DADE2; border: 1px solid rgba(41,128,185,0.3); }
+  .admin-btn-reset:hover { background: rgba(41,128,185,0.45); }
+  .admin-btn-del { background: rgba(192,57,43,0.2); color: #E74C3C; border: 1px solid rgba(192,57,43,0.3); }
+  .admin-btn-del:hover { background: rgba(192,57,43,0.4); }
+  .admin-btn-add { background: rgba(26,188,156,0.2); color: #1ABC9C; border: 1px solid rgba(26,188,156,0.3); white-space: nowrap; }
+  .admin-btn-add:hover { background: rgba(26,188,156,0.4); }
+
+  .admin-toast {
+    position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(20px);
+    background: #2C3E50; color: #fff; border-radius: 10px;
+    padding: 10px 22px; font-size: 0.85rem; font-weight: 600;
+    opacity: 0; transition: all 0.3s; pointer-events: none; z-index: 20000;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+  }
+  .admin-toast.visivel { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+
+  /* ── admin extras ── */
+  .admin-secao-titulo {
+    font-size: 0.75rem; font-weight: 700; color: rgba(255,255,255,0.45);
+    text-transform: uppercase; letter-spacing: 1px;
+    margin: 1rem 0 0.5rem; padding-bottom: 0.4rem;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .admin-user-badge.perm { background: rgba(192,57,43,0.3); color: #FF8A70; }
+  .admin-badge.azul { background: rgba(41,128,185,0.2); color: #5DADE2; }
+  .admin-btn-edit { background: rgba(230,126,34,0.2); color: #F0A500; border: 1px solid rgba(230,126,34,0.3); }
+  .admin-btn-edit:hover { background: rgba(230,126,34,0.4); }
+  .admin-edit-inline td { padding: 0 !important; }
+  .admin-edit-box {
+    background: rgba(255,255,255,0.04); border-left: 3px solid #E67E22;
+    padding: 0.9rem 1.1rem; display: flex; flex-direction: column; gap: 6px;
+  }
+  .admin-edit-form { display: flex; gap: 6px; flex-wrap: wrap; align-items: center; }
+
 </style>
 </head>
 <body>
@@ -732,6 +902,7 @@
       <div class="nav-avatar" id="navAvatar">?</div>
       <span id="navNomeUsuario">Aluno</span>
     </div>
+    <button class="nav-btn" id="btnAdmin" onclick="abrirAdmin()" title="Painel Administrativo" style="display:none;background:rgba(192,57,43,0.3);border-color:rgba(255,120,100,0.5)">⚙️ Admin</button>
     <button class="btn-sair" onclick="fazerLogout()" title="Sair do portal">⏻ Sair</button>
     <button class="nav-btn" onclick="toggleSidebar()">☰ Índice</button>
   </div>
@@ -2628,14 +2799,104 @@ function enviarWhatsApp() {
 }
 
 // ===== LOGIN =====
-// Cadastro de usuários: { usuario: senha }
-// Para adicionar alunos, inclua novas entradas neste objeto.
-const usuariosCadastrados = {
-  'aluno':   'combatfire',
-  'professor':   'profs@123',
+// Usuários permanentes — senhas nunca são resetadas
+const USUARIOS_PERMANENTES = ['professor', 'instrutor', 'demo'];
+
+// Senhas originais dos usuários permanentes (nunca expiram)
+const SENHAS_PERMANENTES = {
+  'professor': 'profs@123',
   'instrutor': 'admin@123',
   'demo':      '1234'
 };
+
+// Duração da senha temporária em milissegundos (72 horas)
+const DURACAO_SENHA_MS = 72 * 60 * 60 * 1000;
+
+// Gera uma senha aleatória de 10 caracteres
+function gerarSenhaAleatoria() {
+  const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz23456789@#$!';
+  let senha = '';
+  for (let i = 0; i < 10; i++) {
+    senha += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return senha;
+}
+
+// Retorna os dados do usuário salvo (senha + timestamp de criação)
+function getDadosUsuario(usuario) {
+  try {
+    const raw = localStorage.getItem('cfUser_' + usuario);
+    return raw ? JSON.parse(raw) : null;
+  } catch(e) { return null; }
+}
+
+// Salva os dados do usuário
+function setDadosUsuario(usuario, senha) {
+  const dados = { senha: senha, criadoEm: Date.now() };
+  localStorage.setItem('cfUser_' + usuario, JSON.stringify(dados));
+  return dados;
+}
+
+// Retorna a senha válida atual de um usuário (reseta se expirada)
+function getSenhaAtual(usuario) {
+  // Usuários permanentes: senha fixa, nunca expira
+  if (USUARIOS_PERMANENTES.includes(usuario)) {
+    return { senha: SENHAS_PERMANENTES[usuario], permanente: true };
+  }
+  const dados = getDadosUsuario(usuario);
+  if (!dados) return null;
+  // Retorna os dados como estão — o reset acontece apenas ao tentar logar após expiração
+  return { senha: dados.senha, criadoEm: dados.criadoEm, expirou: (Date.now() - dados.criadoEm) >= DURACAO_SENHA_MS };
+}
+
+// Inicializa os alunos cadastrados (primeira vez)
+function inicializarUsuarios() {
+  // Carrega senhas permanentes que foram editadas via painel admin
+  USUARIOS_PERMANENTES.forEach(u => {
+    const salva = localStorage.getItem('cfPerm_' + u);
+    if (salva) SENHAS_PERMANENTES[u] = salva;
+  });
+  // Inicializa alunos temporários na primeira visita
+  const alunosIniciais = { 'aluno': 'combatfire' };
+  for (const [usuario, senhaOriginal] of Object.entries(alunosIniciais)) {
+    if (!getDadosUsuario(usuario)) {
+      setDadosUsuario(usuario, senhaOriginal);
+    }
+  }
+}
+
+// Formata tempo restante em horas e minutos
+function formatarTempoRestante(criadoEm) {
+  const restanteMs = DURACAO_SENHA_MS - (Date.now() - criadoEm);
+  if (restanteMs <= 0) return '0h 0min';
+  const horas = Math.floor(restanteMs / (60 * 60 * 1000));
+  const minutos = Math.floor((restanteMs % (60 * 60 * 1000)) / 60000);
+  return horas + 'h ' + minutos + 'min';
+}
+
+// Exibe o aviso de senha temporária após o login
+function exibirAvisoSenhaTemp(criadoEm) {
+  // Remove aviso anterior se existir
+  const antigoAviso = document.getElementById('avisoSenhaTemp');
+  if (antigoAviso) antigoAviso.remove();
+
+  const tempo = formatarTempoRestante(criadoEm);
+  const aviso = document.createElement('div');
+  aviso.id = 'avisoSenhaTemp';
+  aviso.className = 'aviso-senha-temp';
+  aviso.innerHTML = `
+    <div class="aviso-icone">⏳</div>
+    <div class="aviso-texto">
+      <strong>Acesso com senha temporária</strong>
+      Sua senha atual é válida por 72 horas. Após esse período, uma nova senha aleatória será gerada automaticamente e você precisará obtê-la com o administrador do sistema.
+      <br><span class="aviso-tempo">Expira em: ${tempo}</span>
+    </div>
+  `;
+
+  // Insere o aviso no topo do main, antes da primeira página
+  const main = document.querySelector('.main');
+  if (main) main.insertBefore(aviso, main.firstChild);
+}
 
 function fazerLogin() {
   const usuario = document.getElementById('loginUsuario').value.trim().toLowerCase();
@@ -2661,40 +2922,96 @@ function fazerLogin() {
   btn.innerHTML = '<span>⏳</span> Verificando...';
 
   setTimeout(() => {
-    if (usuariosCadastrados[usuario] && usuariosCadastrados[usuario] === senha) {
-      // Sucesso
-      const nome = usuario.charAt(0).toUpperCase() + usuario.slice(1);
-      document.getElementById('navNomeUsuario').textContent = nome;
-      document.getElementById('navAvatar').textContent = nome.charAt(0).toUpperCase();
-      sessionStorage.setItem('cfUsuario', nome);
-
-      document.getElementById('telaLogin').classList.add('oculto');
-      btn.disabled = false;
-      btn.innerHTML = '<span>🔓</span> Entrar no Portal';
+    // Verifica usuários permanentes
+    if (USUARIOS_PERMANENTES.includes(usuario)) {
+      if (SENHAS_PERMANENTES[usuario] === senha) {
+        concluirLogin(usuario, false, null);
+        btn.disabled = false;
+        btn.innerHTML = '<span>🔓</span> Entrar no Portal';
+        return;
+      }
     } else {
-      // Falha
-      erroMsg.textContent = '❌ Usuário ou senha incorretos. Tente novamente.';
-      erroMsg.classList.add('visivel');
-      document.getElementById('loginUsuario').classList.add('erro');
-      document.getElementById('loginSenha').classList.add('erro');
-      document.getElementById('loginSenha').value = '';
-      card.classList.remove('shake');
-      void card.offsetWidth;
-      card.classList.add('shake');
-      btn.disabled = false;
-      btn.innerHTML = '<span>🔓</span> Entrar no Portal';
+      // Usuário temporário: verifica senha atual
+      const dadosSenha = getSenhaAtual(usuario);
+      if (dadosSenha) {
+        if (dadosSenha.expirou) {
+          // Senha expirou: gera nova automaticamente e rejeita o login atual
+          const novaSenha = gerarSenhaAleatoria();
+          setDadosUsuario(usuario, novaSenha);
+          erroMsg.textContent = '⏳ Sua senha expirou após 72 horas. Uma nova senha foi gerada. Solicite ao administrador.';
+          erroMsg.classList.add('visivel');
+          document.getElementById('loginSenha').classList.add('erro');
+          document.getElementById('loginSenha').value = '';
+          card.classList.remove('shake'); void card.offsetWidth; card.classList.add('shake');
+          btn.disabled = false;
+          btn.innerHTML = '<span>🔓</span> Entrar no Portal';
+          return;
+        }
+        if (dadosSenha.senha === senha) {
+          concluirLogin(usuario, true, dadosSenha.criadoEm);
+          btn.disabled = false;
+          btn.innerHTML = '<span>🔓</span> Entrar no Portal';
+          return;
+        }
+      }
     }
+
+    // Falha no login
+    erroMsg.textContent = '❌ Usuário ou senha incorretos. Tente novamente.';
+    erroMsg.classList.add('visivel');
+    document.getElementById('loginUsuario').classList.add('erro');
+    document.getElementById('loginSenha').classList.add('erro');
+    document.getElementById('loginSenha').value = '';
+    card.classList.remove('shake');
+    void card.offsetWidth;
+    card.classList.add('shake');
+    btn.disabled = false;
+    btn.innerHTML = '<span>🔓</span> Entrar no Portal';
   }, 700);
+}
+
+function concluirLogin(usuario, senhaTemporaria, criadoEm) {
+  const nome = usuario.charAt(0).toUpperCase() + usuario.slice(1);
+  document.getElementById('navNomeUsuario').textContent = nome;
+  document.getElementById('navAvatar').textContent = nome.charAt(0).toUpperCase();
+  sessionStorage.setItem('cfUsuario', nome);
+  sessionStorage.setItem('cfUsuarioKey', usuario);
+  sessionStorage.setItem('cfSenhaTemp', senhaTemporaria ? '1' : '0');
+  sessionStorage.setItem('cfIsAdmin', USUARIOS_ADMIN.includes(usuario) ? '1' : '0');
+  if (criadoEm) sessionStorage.setItem('cfSenhaCriadaEm', criadoEm);
+
+  // Exibe botão admin apenas para professor e instrutor
+  const btnAdmin = document.getElementById('btnAdmin');
+  if (btnAdmin) btnAdmin.style.display = USUARIOS_ADMIN.includes(usuario) ? 'flex' : 'none';
+
+  document.getElementById('telaLogin').classList.add('oculto');
+
+  // Exibe aviso apenas para usuários com senha temporária
+  if (senhaTemporaria && criadoEm) {
+    exibirAvisoSenhaTemp(criadoEm);
+  }
 }
 
 function fazerLogout() {
   sessionStorage.removeItem('cfUsuario');
+  sessionStorage.removeItem('cfUsuarioKey');
+  sessionStorage.removeItem('cfSenhaTemp');
+  sessionStorage.removeItem('cfSenhaCriadaEm');
+  sessionStorage.removeItem('cfIsAdmin');
   document.getElementById('loginUsuario').value = '';
   document.getElementById('loginSenha').value = '';
   document.getElementById('loginErroMsg').classList.remove('visivel');
   document.getElementById('loginUsuario').classList.remove('erro');
   document.getElementById('loginSenha').classList.remove('erro');
   document.getElementById('telaLogin').classList.remove('oculto');
+  // Esconde botão admin
+  const btnAdmin = document.getElementById('btnAdmin');
+  if (btnAdmin) btnAdmin.style.display = 'none';
+  // Remove aviso se existir
+  const aviso = document.getElementById('avisoSenhaTemp');
+  if (aviso) aviso.remove();
+  // Fecha modal admin se aberto
+  fecharAdmin();
 }
 
 // Permitir login com Enter
@@ -2707,6 +3024,7 @@ document.addEventListener('keydown', function(e) {
 
 // ===== INICIALIZAÇÃO =====
 document.addEventListener('DOMContentLoaded', function() {
+  inicializarUsuarios();
   criarChecklist();
   criarGlossario();
   initRCPDots();
@@ -2718,8 +3036,350 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('navNomeUsuario').textContent = sessao;
     document.getElementById('navAvatar').textContent = sessao.charAt(0).toUpperCase();
     document.getElementById('telaLogin').classList.add('oculto');
+
+    // Restaurar botão admin
+    const isAdmin = sessionStorage.getItem('cfIsAdmin');
+    const btnAdmin = document.getElementById('btnAdmin');
+    if (btnAdmin) btnAdmin.style.display = isAdmin === '1' ? 'flex' : 'none';
+
+    // Restaurar aviso de senha temporária se aplicável
+    const senhaTemp = sessionStorage.getItem('cfSenhaTemp');
+    const criadoEm  = sessionStorage.getItem('cfSenhaCriadaEm');
+    if (senhaTemp === '1' && criadoEm) {
+      exibirAvisoSenhaTemp(parseInt(criadoEm));
+    }
   }
 });
+
+
+// ===== PAINEL ADMIN =====
+const USUARIOS_ADMIN = ['professor', 'instrutor'];
+const ALUNOS_BASE = ['aluno'];
+
+// Armazena senhas dos permanentes no localStorage para edição via painel
+function getSenhaPermanente(usuario) {
+  const key = 'cfPerm_' + usuario;
+  const salva = localStorage.getItem(key);
+  return salva || SENHAS_PERMANENTES[usuario];
+}
+function setSenhaPermanente(usuario, senha) {
+  localStorage.setItem('cfPerm_' + usuario, senha);
+  // Atualiza o objeto em memória para o login funcionar imediatamente
+  SENHAS_PERMANENTES[usuario] = senha;
+}
+
+function getListaUsuariosTemp() {
+  const lista = new Set(ALUNOS_BASE);
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    if (key && key.startsWith('cfUser_')) {
+      lista.add(key.replace('cfUser_', ''));
+    }
+  }
+  return Array.from(lista);
+}
+
+function abrirAdmin() {
+  // Sincroniza senhas permanentes salvas no localStorage
+  USUARIOS_PERMANENTES.forEach(u => {
+    const salva = localStorage.getItem('cfPerm_' + u);
+    if (salva) SENHAS_PERMANENTES[u] = salva;
+  });
+  renderizarAdmin();
+  document.getElementById('modalAdmin').classList.add('visivel');
+}
+
+function fecharAdmin() {
+  document.getElementById('modalAdmin').classList.remove('visivel');
+  // Cancela qualquer edição em aberto
+  document.querySelectorAll('.admin-edit-inline').forEach(el => el.remove());
+}
+
+function renderizarAdmin() {
+  const tbodyPerm = document.getElementById('adminTbodyPerm');
+  const tbodyTemp = document.getElementById('adminTbodyTemp');
+  const agora = Date.now();
+
+  // ── Seção permanentes ──────────────────────────────────────────
+  tbodyPerm.innerHTML = '';
+  USUARIOS_PERMANENTES.forEach(usuario => {
+    const senha = getSenhaPermanente(usuario);
+    const tr = document.createElement('tr');
+    tr.id = 'row-perm-' + usuario;
+    tr.innerHTML = `
+      <td><span class="admin-user-badge perm">👑 ${usuario}</span></td>
+      <td>
+        <span class="admin-senha-vis" id="sv-perm-${usuario}">${senha}</span>
+        <button class="admin-btn-copy" onclick="copiarSenha('${senha.replace(/'/g,"\'")}'')" title="Copiar">📋</button>
+      </td>
+      <td><span class="admin-badge azul">♾️ Permanente</span></td>
+      <td colspan="2" style="color:rgba(255,255,255,0.3);font-size:0.78rem">Não expira</td>
+      <td>
+        <button class="admin-btn admin-btn-edit" onclick="adminEditarSenha('perm','${usuario}')">✏️ Editar</button>
+      </td>
+    `;
+    tbodyPerm.appendChild(tr);
+  });
+
+  // ── Seção temporários ──────────────────────────────────────────
+  tbodyTemp.innerHTML = '';
+  const usuarios = getListaUsuariosTemp();
+
+  usuarios.forEach(usuario => {
+    const dados = getDadosUsuario(usuario);
+    const tr = document.createElement('tr');
+    tr.id = 'row-temp-' + usuario;
+
+    if (!dados) {
+      tr.innerHTML = `
+        <td><span class="admin-user-badge">${usuario}</span></td>
+        <td><span class="admin-senha-vis" style="color:rgba(255,255,255,0.3)">—</span></td>
+        <td><span class="admin-badge cinza">Não iniciado</span></td>
+        <td>—</td><td>—</td>
+        <td><button class="admin-btn admin-btn-add" onclick="adminResetarSenha('temp','${usuario}')">➕ Iniciar</button></td>
+      `;
+    } else {
+      const expirou = (agora - dados.criadoEm) >= DURACAO_SENHA_MS;
+      const restanteMs = DURACAO_SENHA_MS - (agora - dados.criadoEm);
+      const horas = expirou ? 0 : Math.floor(restanteMs / (60 * 60 * 1000));
+      const minutos = expirou ? 0 : Math.floor((restanteMs % (60 * 60 * 1000)) / 60000);
+      const tempoStr = expirou ? 'Expirada' : horas + 'h ' + minutos + 'min';
+      const criadoStr = new Date(dados.criadoEm).toLocaleString('pt-BR');
+      const statusClass = expirou ? 'vermelho' : 'verde';
+      const statusLabel = expirou ? '⚠️ Expirada' : '✅ Ativa';
+      const senhaEsc = dados.senha.replace(/'/g, "\'");
+
+      tr.innerHTML = `
+        <td><span class="admin-user-badge">${usuario}</span></td>
+        <td>
+          <span class="admin-senha-vis" id="sv-temp-${usuario}">${dados.senha}</span>
+          <button class="admin-btn-copy" onclick="copiarSenha('${senhaEsc}')" title="Copiar">📋</button>
+        </td>
+        <td><span class="admin-badge ${statusClass}">${statusLabel}</span></td>
+        <td class="admin-tempo ${expirou ? 'expirado' : ''}">${tempoStr}</td>
+        <td class="admin-data">${criadoStr}</td>
+        <td>
+          <button class="admin-btn admin-btn-edit" onclick="adminEditarSenha('temp','${usuario}')">✏️ Editar</button>
+          <button class="admin-btn admin-btn-reset" onclick="adminResetarSenha('temp','${usuario}')" title="Gerar senha aleatória">🔄</button>
+          <button class="admin-btn admin-btn-del" onclick="adminRemoverUsuario('${usuario}')">🗑️</button>
+        </td>
+      `;
+    }
+    tbodyTemp.appendChild(tr);
+  });
+
+  // Contadores (somente temporários)
+  const total = usuarios.length;
+  const expirados = usuarios.filter(u => {
+    const d = getDadosUsuario(u);
+    return d && (agora - d.criadoEm) >= DURACAO_SENHA_MS;
+  }).length;
+  document.getElementById('adminStatTotal').textContent = total;
+  document.getElementById('adminStatAtivos').textContent = total - expirados;
+  document.getElementById('adminStatExp').textContent = expirados;
+}
+
+// Edição inline de senha
+function adminEditarSenha(tipo, usuario) {
+  // Remove edição anterior se existir
+  document.querySelectorAll('.admin-edit-inline').forEach(el => el.remove());
+
+  const rowId = 'row-' + tipo + '-' + usuario;
+  const row = document.getElementById(rowId);
+  if (!row) return;
+
+  const senhaAtual = tipo === 'perm'
+    ? getSenhaPermanente(usuario)
+    : (getDadosUsuario(usuario) || {}).senha || '';
+
+  // Insere linha de edição abaixo da linha atual
+  const editRow = document.createElement('tr');
+  editRow.className = 'admin-edit-inline';
+  editRow.innerHTML = `
+    <td colspan="6">
+      <div class="admin-edit-box">
+        <span style="font-size:0.8rem;color:rgba(255,255,255,0.6);font-weight:700">✏️ Nova senha para <span style="color:#fff">${usuario}</span></span>
+        <div class="admin-edit-form">
+          <input id="adminEditInput" type="text" value="${senhaAtual}" class="admin-input" placeholder="Digite a nova senha"
+            onkeydown="if(event.key==='Enter')adminSalvarSenha('${tipo}','${usuario}');if(event.key==='Escape')adminCancelarEdicao()">
+          <button class="admin-btn admin-btn-add" onclick="adminSalvarSenha('${tipo}','${usuario}')">✅ Salvar</button>
+          <button class="admin-btn admin-btn-reset" onclick="adminGerarEColar('${tipo}','${usuario}')">🎲 Aleatória</button>
+          <button class="admin-btn admin-btn-del" onclick="adminCancelarEdicao()">✕</button>
+        </div>
+        <div style="font-size:0.71rem;color:#888;margin-top:4px">Enter para salvar · Esc para cancelar · 🎲 gera senha aleatória automaticamente</div>
+      </div>
+    </td>
+  `;
+  row.insertAdjacentElement('afterend', editRow);
+  document.getElementById('adminEditInput').focus();
+  document.getElementById('adminEditInput').select();
+}
+
+function adminGerarEColar(tipo, usuario) {
+  const nova = gerarSenhaAleatoria();
+  document.getElementById('adminEditInput').value = nova;
+}
+
+function adminSalvarSenha(tipo, usuario) {
+  const input = document.getElementById('adminEditInput');
+  const novaSenha = input ? input.value.trim() : '';
+  if (!novaSenha) { mostrarToastAdmin('A senha não pode ser vazia.'); return; }
+  if (novaSenha.length < 4) { mostrarToastAdmin('Senha muito curta (mínimo 4 caracteres).'); return; }
+
+  if (tipo === 'perm') {
+    setSenhaPermanente(usuario, novaSenha);
+  } else {
+    setDadosUsuario(usuario, novaSenha);
+  }
+
+  adminCancelarEdicao();
+  mostrarToastAdmin('Senha de "' + usuario + '" atualizada! ✅');
+  renderizarAdmin();
+}
+
+function adminCancelarEdicao() {
+  document.querySelectorAll('.admin-edit-inline').forEach(el => el.remove());
+}
+
+function copiarSenha(senha) {
+  navigator.clipboard.writeText(senha).then(() => {
+    mostrarToastAdmin('Senha copiada! 📋');
+  }).catch(() => {
+    mostrarToastAdmin('Erro ao copiar.');
+  });
+}
+
+function mostrarToastAdmin(msg) {
+  const t = document.getElementById('adminToast');
+  t.textContent = msg;
+  t.classList.add('visivel');
+  setTimeout(() => t.classList.remove('visivel'), 2800);
+}
+
+function adminResetarSenha(tipo, usuario) {
+  const novaSenha = gerarSenhaAleatoria();
+  if (tipo === 'perm') {
+    setSenhaPermanente(usuario, novaSenha);
+  } else {
+    setDadosUsuario(usuario, novaSenha);
+  }
+  mostrarToastAdmin('Nova senha aleatória gerada para "' + usuario + '"!');
+  renderizarAdmin();
+}
+
+function adminRemoverUsuario(usuario) {
+  if (!confirm('Remover o usuário "' + usuario + '" permanentemente?')) return;
+  localStorage.removeItem('cfUser_' + usuario);
+  const idx = ALUNOS_BASE.indexOf(usuario);
+  if (idx > -1) ALUNOS_BASE.splice(idx, 1);
+  mostrarToastAdmin('Usuário "' + usuario + '" removido.');
+  renderizarAdmin();
+}
+
+function adminAdicionarUsuario() {
+  const nomeInput = document.getElementById('adminNovoNome');
+  const nome = nomeInput.value.trim().toLowerCase();
+  if (!nome) { mostrarToastAdmin('Digite um nome de usuário.'); return; }
+  if (!/^[a-z0-9_]+$/.test(nome)) { mostrarToastAdmin('Use apenas letras, números e _'); return; }
+  if (USUARIOS_PERMANENTES.includes(nome)) { mostrarToastAdmin('Esse nome é reservado.'); return; }
+  if (getDadosUsuario(nome)) { mostrarToastAdmin('Usuário já existe!'); return; }
+  const senha = gerarSenhaAleatoria();
+  setDadosUsuario(nome, senha);
+  if (!ALUNOS_BASE.includes(nome)) ALUNOS_BASE.push(nome);
+  nomeInput.value = '';
+  mostrarToastAdmin('Usuário "' + nome + '" criado com sucesso!');
+  renderizarAdmin();
+}
+
+setInterval(() => {
+  const modal = document.getElementById('modalAdmin');
+  if (modal && modal.classList.contains('visivel')) renderizarAdmin();
+}, 60000);
+
 </script>
+
+<!-- ===== MODAL ADMIN ===== -->
+<div id="modalAdmin" class="modal-admin-overlay" onclick="if(event.target===this)fecharAdmin()">
+  <div class="modal-admin-box">
+    <div class="modal-admin-header">
+      <div class="modal-admin-titulo">
+        <span style="font-size:1.4rem">⚙️</span>
+        <div>
+          <div style="font-size:1.05rem;font-weight:800;color:#fff">Painel Administrativo</div>
+          <div style="font-size:0.73rem;color:rgba(255,255,255,0.55);margin-top:1px">Gestão de usuários e senhas</div>
+        </div>
+      </div>
+      <button class="modal-admin-fechar" onclick="fecharAdmin()">✕</button>
+    </div>
+    <div class="modal-admin-body">
+
+      <!-- Stats (alunos temporários) -->
+      <div class="admin-stats-row">
+        <div class="admin-stat-card">
+          <strong id="adminStatTotal">0</strong>
+          <span>Total de alunos</span>
+        </div>
+        <div class="admin-stat-card verde">
+          <strong id="adminStatAtivos">0</strong>
+          <span>Senhas ativas</span>
+        </div>
+        <div class="admin-stat-card vermelho">
+          <strong id="adminStatExp">0</strong>
+          <span>Senhas expiradas</span>
+        </div>
+      </div>
+
+      <!-- Tabela usuários permanentes -->
+      <div class="admin-secao-titulo">👑 Usuários permanentes</div>
+      <div class="admin-tabela-wrap" style="margin-bottom:1.2rem">
+        <table class="admin-tabela">
+          <thead>
+            <tr>
+              <th>Usuário</th>
+              <th>Senha atual</th>
+              <th>Tipo</th>
+              <th colspan="2">Validade</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="adminTbodyPerm"></tbody>
+        </table>
+      </div>
+
+      <!-- Tabela alunos temporários -->
+      <div class="admin-secao-titulo">🎓 Alunos temporários</div>
+      <div class="admin-add-row">
+        <div class="admin-add-titulo">➕ Adicionar novo aluno</div>
+        <div class="admin-add-form">
+          <input id="adminNovoNome" type="text" placeholder="Nome do usuário (ex: aluno2)" class="admin-input"
+            onkeydown="if(event.key==='Enter')adminAdicionarUsuario()">
+          <button class="admin-btn admin-btn-add" onclick="adminAdicionarUsuario()">Criar usuário</button>
+        </div>
+        <div style="font-size:0.72rem;color:#888;margin-top:6px">Senha aleatória gerada automaticamente · Válida por 72 horas</div>
+      </div>
+      <div class="admin-tabela-wrap">
+        <table class="admin-tabela">
+          <thead>
+            <tr>
+              <th>Usuário</th>
+              <th>Senha atual</th>
+              <th>Status</th>
+              <th>Expira em</th>
+              <th>Criada em</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="adminTbodyTemp"></tbody>
+        </table>
+      </div>
+
+      <div style="font-size:0.72rem;color:#666;text-align:center;margin-top:1rem">
+        🔒 Painel visível apenas para professor e instrutor
+      </div>
+    </div>
+  </div>
+  <div id="adminToast" class="admin-toast"></div>
+</div>
+
 </body>
 </html>
